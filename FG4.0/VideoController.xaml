@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="FG4._0.VideoController"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FG4._0" d:DataContext="{d:DesignInstance Type=local:VideoControllerViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="LightGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="1.5*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Width="70" Height="50" HorizontalAlignment="Center" VerticalAlignment="Center" Click="Open_Button_Click">
+                <TextBlock Text="Open"/>
+            </Button>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="backwards_Button_Click">
+                    <Image x:Name="BackwardsBtn" Source="/backwards.png"  ></Image>
+                </Button>
+                <Button  Grid.Column="1" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="PlayPause_Button_Click">
+                    <Image x:Name="PlayPauseBtn" Source="/play.png"    ></Image>
+                </Button>
+                <Button Grid.Column="2" Width="40" Height="40" HorizontalAlignment="Center" VerticalAlignment="Center" Click="forward_Button_Click">
+                    <Image x:Name="ForwardBtn" Source="/forward.png"    ></Image>
+                </Button>
+            </Grid>
+            <TextBlock Grid.Column="2" Text="Play speed" VerticalAlignment=" center" HorizontalAlignment="center" FontSize="20" />
+            <ComboBox x:Name="SpeedOfVideo" Grid.Column="3" Width="50" Height="30" SelectionChanged="ComboBox_SelectionChanged" SelectedIndex="3">
+                <ComboBoxItem DataContext="0.25" Content="0.25"/>
+                <ComboBoxItem DataContext="0.5" Content="0.5"/>
+                <ComboBoxItem DataContext="0.75" Content="0.75"/>
+                <ComboBoxItem DataContext="1" Content="1" />
+                <ComboBoxItem DataContext="1.25" Content="1.25"/>
+                <ComboBoxItem DataContext="1.5" Content="1.5"/>
+                <ComboBoxItem DataContext="1.75" Content="1.75"/>
+                <ComboBoxItem DataContext="2" Content="2"/>
+            </ComboBox>
+            <TextBlock Grid.Column="4" Text="{Binding Path = Time}" FontSize="30" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+        <!--<Slider x:Name="VideoSlider" Grid.Row="1" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Max}"  ValueChanged="Slider_ValueChanged"></Slider>-->
+        <!--<Slider x:Name="VideoSlider" IsEnabled="True" Value="{Binding Path = Sec, Mode=TwoWay}" Grid.Row="1" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Path = Max}"
+                ValueChanged="Slider_ValueChanged" Thumb.DragStarted="VideoSlider_DragStarted" Thumb.DragCompleted="VideoSlider_DragCompleted" TickFrequency="1">
+        </Slider>-->
+        <Slider x:Name="VideoSlider" IsEnabled="True" Value="{Binding Frames}" Grid.Row="1" VerticalAlignment="Center" Minimum="0" Maximum="{Binding Max}"
+                IsSnapToTickEnabled="True" TickFrequency="1" Thumb.DragStarted="VideoSlider_DragStarted" Thumb.DragCompleted="VideoSlider_DragCompleted">
+        </Slider>
+
+    </Grid>
+</UserControl>

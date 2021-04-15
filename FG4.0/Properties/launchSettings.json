@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "FG4.0": {
+      "commandName": "Project",
+      "commandLineArgs": "HybridAnomalyDetector",
+      "nativeDebugging": true
+    }
+  }
+}
